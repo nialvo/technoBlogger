@@ -1,7 +1,22 @@
-<!--
 
-{{posts with # of comments by all users}}
+<div id="smallPosts"></div>
+    {{#each posts as |post|}}
+    <div class="post" id="{{id}}" value="post">
+        <div class="postHead">
+            <div class="postTitle">{{title}}</div>
+            <p>Posted by {{name}} on {{date_created}}</p>
+            <p>{{commentNum}} comments</p>
+        </div>
+        <div class="postBody">
+            <p class="postContent">{{content}}</p>
+            <a href="/update/{{id}}">Edit or Delete Post</a> 
+        </div>
+    </div>
+    {{/each}}
+</div>
 
-view post button
+{{#if loggedIn}}
+<button id='newPost' class='addButton myButtons'>Add New Post</button>
+{{/if}}
 
--->
+<script src="/js/dash.js"></script>

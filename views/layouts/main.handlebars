@@ -1,6 +1,44 @@
-<!--
 
-    home dashboard  login/out
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type= href="/css/style.css"/>
+    <title>The Techology Weblog</title>
+</head>
 
-    -->
+<body>
+    <nav id="navBar">
+        <ul id="navLinks">
+
+            <li class="navLinkItem">
+                <a class="navLink" href="/">Home</a>
+            </li>
+            {{#if loggedIn}}
+            <li class="navLinkItem">
+                <a class="navLink" href="/dash">Dashboard</a>
+            </li>
+            {{/if}}
+            {{#if loggedIn}}
+            <li class="navLinkItem">
+                <a class="navLink" id="logoutButton">Logout</a>
+            </li>
+            {{else}}
+            <li class="navLinkItem">
+                <a class="navLink" href="/login">Login</a>
+            </li>
+            {{/if}}
+         
+        </ul>  
+    </nav>
+    
+    <div id="allBody">
+        <div id="bodyTitle">{{pageTitle}}</div>
+        {{{body}}}
+    </div>
+    
+    <script src="/js/loginout.js"></script>
+</body>
+
+</html>

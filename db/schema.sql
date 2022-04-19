@@ -1,4 +1,8 @@
 /*
 drop and create db
-use db
+
 */
+
+DROP DATABASE IF EXISTS tb_db;
+
+CREATE DATABASE tb_db;
