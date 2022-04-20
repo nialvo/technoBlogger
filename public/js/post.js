@@ -1,2 +1,1 @@
-//get addComment button, add event handler 
-
+//don't need anything here apparently

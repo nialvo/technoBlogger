@@ -12,6 +12,8 @@ router.get('/', async (req, res) => {
             date = post.date_created.split('-');
             post.date_created = `${date[1]}/${date[2]}/${date[0]}`;
             post.name = post.user.name;
+            if(post.user_id==req.session.user_id)post.mine=true;
+            else post.mine=false;
             return post;
         });
         res.render('home', {
@@ -67,17 +69,23 @@ router.get('/new', async (req, res) => {
     }
 });
 
-//individual post display////////////////////////////////////////////////////////////////////////////////////////////test this dude
-/*router.get('/post/:id', async (req, res) => {
+//post edit
+router.get('/edit/:id', async (req, res) => {
     try {
-        const postComments = await Post.findByPk(req.params.id, { include: [{ model: Comment }] });
-        res.status(200).json(postComments);
-    } catch (err) {
-        res.status(400).json(err);
-        console.log(err);
+        const post = await Post.findByPk(req.params.id, { raw: true });
+        res.render('edit', {
+            pageTitle: "Edit Post",
+            loggedIn: req.session.logged_in,
+            post
+        });
     }
-});*/
-//individual post display////////////////////////////////////////////////////////////////////////////////////////////test this dude
+    catch (err) {
+        console.log(err);
+        res.status.apply(500).json(err);
+    }
+});
+
+//individual post display
 router.get('/post/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -89,34 +97,61 @@ router.get('/post/:id', async (req, res) => {
             return;
         }
 
-        post = postData.dataValues;//?need this??
+        let post = postData.dataValues;
         post.author = postData.dataValues.user.name;
-        delete post.user;//???????
-        comments = post.comments;
 
+        let comments = post.comments;
         comments = comments.map((comment)=>{
             comment = comment.get({plain:true});
-            comment.commentor_name=comment.user.name;
-            delete comment.user;
-            date = comment.date_created.split('-');
-            comment.date_created = `${date[1]}/${date[2]}/${date[0]}`;
-            return comment;
-        }
-        );
-
-        post.comments=comments;
-        date = post.date_created.split('-');
-        post.date_created = `${date[1]}/${date[2]}/${date[0]}`;
-        console.log(post);
-
-        res.render('post', {
+            comment.author=comment.user.name;
+            if(comment.user_id==req.session.user_id)comment.mine=true;
+            else comment.mine=false;
+    
             
+            return comment;
+        });
+        post.comments=comments;
+        
+        res.render('post', {
             loggedIn: req.session.logged_in,
             post
         });
+
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
+    }
+});
+
+//comment entry
+router.get('/new/comment/:id', async (req, res) => {
+    try {
+        res.render('newComment', {
+            pageTitle: "New Comment",
+            loggedIn: req.session.logged_in,
+            id: req.params.id
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.status.apply(500).json(err);
+    }
+});
+
+//comment edit
+
+router.get('/edit/comment/:id/:postid', async (req, res) => {
+    try {
+        res.render('editComment', {
+            pageTitle: "Edit Comment",
+            loggedIn: req.session.logged_in,
+            id: req.params.id,
+            postid: req.params.postid
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.status.apply(500).json(err);
     }
 });
 

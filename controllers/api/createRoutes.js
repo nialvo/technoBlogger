@@ -18,13 +18,15 @@ router.post('/post', async (req, res) => {
 });
 
 //create comment
-router.post('/comment', async (req, res) => {
+router.post('/create/comment/:id', async (req, res) => {
     try {
         if (!req.session.logged_in) {
             res.status(400).json("User not logged in");
             return;
         }
         req.body.user_id = req.session.user_id;
+        req.body.post_id = req.params.id;
+    
         const newComment = await Comment.create(req.body);
         res.status(200).json(newComment);
     }

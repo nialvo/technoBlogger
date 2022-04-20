@@ -28,17 +28,47 @@
 }
 #tag{}
 
-.post, .post1{
-    border: 2px solid rgb(65, 21, 21);
-    border-radius: 5px
+#smallPosts{
+    
+}
+
+.post {
+    border: 4px solid rgb(65, 21, 21);
+    border-radius: 5px;
+    margin:15px;
+    padding:10px;
+    width:100%;
+    height:100%;
+
+}
+.post1{
+    border: 4px solid rgb(65, 21, 21);
+    border-radius: 5px;
+    margin:15px;
+    padding:10px;
+    width:100%;
+    height:100%;
+
 
 }
 .post:hover{
     border: 4px solid rgb(186, 127, 127);
-    border-radius: 5px
+    border-radius: 5px;
+    padding:10px;
+    width:100%;
+    height:100%;
+
 }
 
-.comment{}
+.comment{
+
+    border: 3px solid rgb(94, 197, 144);
+    border-radius: 6px;
+    margin:20px;
+    padding:10px;
+    width:80%;
+    height:100%;
+}
 .commentHead{}
 .commentTitle{}
 .commentBody{}

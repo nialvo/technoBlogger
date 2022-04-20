@@ -1,0 +1,37 @@
+<div>
+<form id="newPost" >
+    <div id="postNum" style="visibility:hidden;">{{post.id}}</div>
+    <label for="title">Title for post {{post.id}}</label>
+    <textarea id="title" name="title">{{post.title}}</textarea>
+
+    <label for="content">Content</label>
+    <textarea id="content" name="content">{{post.content}}</textarea>
+
+    <label for="tag">Tag</label>
+    <select id="tag" name="tag" selected="{{post.tag}}">
+        <option value="random">random</option>
+        <option value="javascript">javascript</option>
+        <option value="html">html</option>
+        <option value="css">css</option>
+        <option value=".net">.net</option>
+        <option value="android">android</option>
+        <option value="python">python</option>
+        <option value="java">java</option>
+        <option value="ios">ios</option>
+        <option value="c">c</option>
+        <option value="c++">c++</option>
+        <option value="c#">c#</option>
+        <option value="ruby">ruby</option>
+        <option value="sql">sql</option>
+      
+    </select>
+  
+    <button id="editPost" type="button" class="submitButton">Edit</button>
+    <button id="deletePost" type="button" class="submitButton">Delete</button>
+</form>
+
+
+
+<script src='/js/edit.js'></script>
+
+</div>

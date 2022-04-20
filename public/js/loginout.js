@@ -1,6 +1,5 @@
 //login function
 async function login(event){
-    event.preventDefault();
     const name = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
     const response = await fetch('/api/user/login', {
@@ -33,5 +32,5 @@ async function logout(){
 }
 
 //add event listeners if triggers present
-if(document.querySelector('#loginForm'))document.querySelector('#loginForm').addEventListener('submit', login);
+if(document.querySelector('#submitButton'))document.querySelector('#submitButton').addEventListener('click', login);
 if(document.querySelector('#logoutButton'))document.querySelector('#logoutButton').addEventListener('click', logout);

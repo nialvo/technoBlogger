@@ -1,7 +1,5 @@
 <div id="smallPosts">
 {{#each posts as |post|}}
-{{!--> post-details--}}
-<br>
 <div class="post" id="{{id}}" value="post">
     <div class="postHead">
         <div class="postTitle">{{title}}</div>
@@ -10,11 +8,11 @@
     </div>
     <div class="postBody">
         <p class="postContent">{{content}}</p>
-        <a href="/update/{{id}}">Edit or Delete Post</a>
+        <a href="/edit/{{id}}">Edit or Delete Post</a>
+        <a href="/post/{{id}}">View or Add Comments</a>
         
     </div>
 </div>
-<br>
 {{/each}}
 </div>
 

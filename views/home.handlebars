@@ -9,7 +9,10 @@
         </div>
         <div class="postBody">
             <p class="postContent">{{content}}</p>
-            <a href="/update/{{id}}">Edit or Delete Post</a> 
+            {{#if mine}}
+            <a href="/edit/{{id}}">Edit or Delete Post</a>
+            {{/if}}
+            <a href="/post/{{id}}">View or Add Comments</a>
         </div>
     </div>
     {{/each}}
@@ -19,4 +22,4 @@
 <button id='newPost' class='addButton myButtons'>Add New Post</button>
 {{/if}}
 
-<script src="/js/dash.js"></script>
+<script src="/js/home.js"></script>
