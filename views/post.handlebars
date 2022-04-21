@@ -2,7 +2,11 @@
     <div class="postHead">
         <div class="postTitle">{{post.title}}</div>
         <p>Posted by {{post.author}} on {{post.date_created}}</p>
+        {{#if post.oneComment}}
+        <p>{{post.commentNum}} comment</p>
+        {{else}}
         <p>{{post.commentNum}} comments</p>
+        {{/if}}
     </div>
     <div class="postBody">
         <p class="postContent">{{post.content}}</p>
@@ -19,12 +23,12 @@
   </div>
 
   {{#if comment.mine}}
-  <a href="/edit/comment/{{comment.id}}/{{post.id}}">Edit or Delete Comment</a>
+  {{{comment.edit}}}
   {{/if}}
 </div>
 {{/each}}
 
-<a href="/new/comment/{{post.id}}">Add Comment</a>
+{{{post.edit}}}
 
 </form>
 <script src='/js/post.js'></script>

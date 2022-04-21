@@ -1,8 +1,6 @@
-async function editComment(){
+async function editComment(val,postid){
     const content = document.querySelector('#content').value;
-    const id = document.querySelector('#newComment').value;
-    const postid = document.querySelector('#onPost').value;
-    const response = await fetch(`/api/edit/comment/${id}`, {
+    const response = await fetch(`/api/edit/comment/${val}`, {
         method: 'PUT',
         body: JSON.stringify({
             content
@@ -18,10 +16,8 @@ async function editComment(){
     }
 }
 
-async function deleteComment(){
-    const id = document.querySelector('#newComment').value;
-    const postid = document.querySelector('#onPost').value;
-    const response = await fetch(`/api/edit/comment/delete/${id}`, {
+async function deleteComment(val,postid){
+    const response = await fetch(`/api/delete/comment/${val}/${postid}`, {
         method: 'DELETE',
     });
     if (response.ok) {
@@ -30,8 +26,3 @@ async function deleteComment(){
         alert('Fail');
     }
 }
-
-document.querySelector('#editComment').addEventListener('click', editComment);
-
-document.querySelector('#deleteComment').addEventListener('click', deleteComment);
-

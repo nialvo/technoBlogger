@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post, Comment } = require('../../models');
 
-//update post
+//edit post
 router.put('/post/:id', async (req, res) => {
     try {
         console.log(req.params.id);
@@ -21,21 +21,9 @@ router.put('/post/:id', async (req, res) => {
     }
 });
 
-//delete post
-router.delete('/post/delete/:id', async (req, res) => {
-    try {
-        const deletedPost = await Post.destroy({
-            where: { id: req.params.id }
-        });
-        res.status(200).json(deletedPost);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(400).json(err)
-    }
-});
 
-//update comment
+
+//edit comment
 router.put('/comment/:id', async (req, res) => {
     try {
         if (!req.session.logged_in) {
@@ -55,24 +43,6 @@ router.put('/comment/:id', async (req, res) => {
     
 });
 
-//delete comment
-router.put('/comment/delete/:id', async (req, res) => {
-    try {
-        if (!req.session.logged_in) {
-            res.status(400).json("User is not logged in");
-            return
-        }
-        req.body.user_id = req.session.user_id;
-        const deletedComment = await Comment.destroy({
-            where: { id: req.params.id }
-        });
-        res.status(200).json(deletedComment);
-    }
-    catch (err) {
-        console.log(err);
-        res.status(400).json(err);
-    }
-    
-});
+
 
 module.exports = router;

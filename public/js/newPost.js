@@ -1,5 +1,4 @@
-async function newPost(event){
-    const commentNum = 0;
+async function newPost(){
     const title = document.querySelector('#title').value;
     const content = document.querySelector('#content').value;
     const tag = document.querySelector('#tag').value;
@@ -9,7 +8,6 @@ async function newPost(event){
             title,
             tag,
             content,
-            commentNum
         }),
         headers: {
             'Content-Type': 'application/json'

@@ -1,7 +1,7 @@
 
 async function newPost (event){
     event.preventDefault();
-    document.location.replace('/new');
+    document.location.replace('/new/post');
 }
 
 if(document.querySelector('#newPost')){

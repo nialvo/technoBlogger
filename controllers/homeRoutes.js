@@ -14,6 +14,10 @@ router.get('/', async (req, res) => {
             post.name = post.user.name;
             if(post.user_id==req.session.user_id)post.mine=true;
             else post.mine=false;
+            if(post.commentNum==1)post.oneComment=true;
+            else post.oneComment=false;
+            if(post.commentNum==0)post.zeroComments=true;
+            else post.zeroComments=false;
             return post;
         });
         res.render('home', {
@@ -27,7 +31,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-
 //dashboard
 router.get('/dash', async (req, res) => {
     try {
@@ -39,6 +42,10 @@ router.get('/dash', async (req, res) => {
                 post.name = dbPostData.dataValues.name;
                 date = post.date_created.split('-');
                 post.date_created = `${date[1]}/${date[2]}/${date[0]}`;
+                if(post.commentNum==1)post.oneComment=true;
+                else post.oneComment=false;
+                if(post.commentNum==0)post.zeroComments=true;
+                else post.zeroComments=false;
                 return post;
             });
         }
@@ -53,10 +60,8 @@ router.get('/dash', async (req, res) => {
     }
 })
 
-
-
 //post entry
-router.get('/new', async (req, res) => {
+router.get('/new/post', async (req, res) => {
     try {
         res.render('newPost', {
             pageTitle: "New Post",
@@ -70,13 +75,81 @@ router.get('/new', async (req, res) => {
 });
 
 //post edit
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/post/:id', async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id, { raw: true });
         res.render('edit', {
             pageTitle: "Edit Post",
             loggedIn: req.session.logged_in,
-            post
+            post,
+            editButton: `<button id="editPost" type="button" onclick="edit(${req.params.id})" class="submitButton">Edit</button>`,
+            deleteButton: `<button id="deletePost" type="button" onclick="deletePost(${req.params.id})" class="submitButton">Delete</button>`
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.status.apply(500).json(err);
+    }
+});
+
+//comment entry
+router.get('/new/comment/:id', async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.id, {
+            include: [{ model: User }, { model: Comment, include: [User] }]
+        });
+
+        if (postData===null){
+            res.status(404).json('Post not found');
+            return;
+        }
+
+        let post = postData.dataValues;
+        post.author = postData.dataValues.user.name;
+        post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`
+        if(post.commentNum==1)post.oneComment=true;
+        else post.oneComment=false;
+
+        res.render('newComment', {
+            post,
+            pageTitle: "New Comment",
+            loggedIn: req.session.logged_in,
+            send: `<button type="button" id="submitButton" onclick="newComment(${req.params.id})" >Comment</button>`//need quotes for function?
+        });
+    }
+    catch (err) {
+        console.log(err);
+        res.status.apply(500).json(err);
+    }
+});
+
+//comment edit
+router.get('/edit/comment/:id/:postid', async (req, res) => {
+    try {
+        const postData = await Post.findByPk(req.params.postid, {
+            include: [{ model: User }, { model: Comment, include: [User] }]
+        });
+
+        if (postData===null){
+            res.status(404).json('Post not found');
+            return;
+        }
+
+        let post = postData.dataValues;
+        post.author = postData.dataValues.user.name;
+        post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`
+        if(post.commentNum==1)post.oneComment=true;
+        else post.oneComment=false;
+        
+
+        const comment = await Comment.findByPk(req.params.id, { raw: true });
+        res.render('editComment', {
+            post,
+            pageTitle: "Edit Comment",
+            content:comment.content,
+            loggedIn: req.session.logged_in,
+            editButton: `<button id="editPost" type="button" onclick="editComment(${req.params.id},${req.params.postid})" class="submitButton">Edit</button>`,
+            deleteButton: `<button id="deletePost" type="button" onclick="deleteComment(${req.params.id},${req.params.postid})" class="submitButton">Delete</button>`
         });
     }
     catch (err) {
@@ -99,22 +172,25 @@ router.get('/post/:id', async (req, res) => {
 
         let post = postData.dataValues;
         post.author = postData.dataValues.user.name;
-
+        post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`
+        if(post.commentNum==1)post.oneComment=true;
+        else post.oneComment=false;
+        
         let comments = post.comments;
         comments = comments.map((comment)=>{
             comment = comment.get({plain:true});
             comment.author=comment.user.name;
             if(comment.user_id==req.session.user_id)comment.mine=true;
             else comment.mine=false;
-    
-            
+            comment.edit=`<a href="/edit/comment/${comment.id}/${post.id}">Edit or Delete Comment</a>`
             return comment;
         });
         post.comments=comments;
-        
+
         res.render('post', {
             loggedIn: req.session.logged_in,
-            post
+            post,
+            
         });
 
     } catch (err) {
@@ -122,40 +198,6 @@ router.get('/post/:id', async (req, res) => {
         res.status(400).json(err);
     }
 });
-
-//comment entry
-router.get('/new/comment/:id', async (req, res) => {
-    try {
-        res.render('newComment', {
-            pageTitle: "New Comment",
-            loggedIn: req.session.logged_in,
-            id: req.params.id
-        });
-    }
-    catch (err) {
-        console.log(err);
-        res.status.apply(500).json(err);
-    }
-});
-
-//comment edit
-
-router.get('/edit/comment/:id/:postid', async (req, res) => {
-    try {
-        res.render('editComment', {
-            pageTitle: "Edit Comment",
-            loggedIn: req.session.logged_in,
-            id: req.params.id,
-            postid: req.params.postid
-        });
-    }
-    catch (err) {
-        console.log(err);
-        res.status.apply(500).json(err);
-    }
-});
-
-
 
 //signup
 router.get('/signup', async (req, res) => {

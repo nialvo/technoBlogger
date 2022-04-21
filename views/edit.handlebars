@@ -1,7 +1,6 @@
 <div>
 <form id="newPost" >
-    <div id="postNum" style="visibility:hidden;">{{post.id}}</div>
-    <label for="title">Title for post {{post.id}}</label>
+    <label for="title">Title</label>
     <textarea id="title" name="title">{{post.title}}</textarea>
 
     <label for="content">Content</label>
@@ -26,8 +25,8 @@
       
     </select>
   
-    <button id="editPost" type="button" class="submitButton">Edit</button>
-    <button id="deletePost" type="button" class="submitButton">Delete</button>
+    {{{editButton}}}
+    {{{deleteButton}}}
 </form>
 
 

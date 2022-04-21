@@ -1,12 +1,26 @@
+<div class="post1">
+    <div class="postHead">
+        <div class="postTitle">{{post.title}}</div>
+        <p>Posted by {{post.author}} on {{post.date_created}}</p>
+        {{#if oneComment}}
+        <p>{{commentNum}} comment</p>
+        {{else}}
+        <p>{{commentNum}} comments</p>
+        {{/if}}
+    </div>
+    <div class="postBody">
+        <p class="postContent">{{post.content}}</p>
+    </div>
+</div>
 
-<form id="newComment" value="{{id}}">
+<form id="newComment">
     
     <label for="content">Comment</label>
-    <textarea id="content" name="content">{{comment.content}}</textarea>
+    <textarea id="content" name="content">{{content}}</textarea>
 
   
-    <button id="editComment" type="button" class="submitButton">Edit</button>
-    <button id="deleteComment" type="button" class="submitButton">Delete</button>
+    {{{editButton}}}
+    {{{deleteButton}}}
 </form>
 
 <div id="onPost" value="{{postid}}"></div>

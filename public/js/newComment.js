@@ -1,7 +1,6 @@
-async function newComment(){
+async function newComment(val){
     const content = document.querySelector('#content').value;
-    const id = document.querySelector('#newCOmment').value;
-    const response = await fetch(`/api/create/comment/${id}`, {
+    const response = await fetch(`/api/create/comment/${val}`, {
         method: 'POST',
         body: JSON.stringify({
             content
@@ -12,10 +11,9 @@ async function newComment(){
     });
     if (response.ok) {
         console.log(response);
-        document.location.replace(`/post/${id}`);
+        document.location.replace(`/post/${val}`);
     } else {
         alert('Fail');
     }
 }
 
-document.querySelector('#submitButton').addEventListener('click', newComment);

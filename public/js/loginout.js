@@ -32,5 +32,5 @@ async function logout(){
 }
 
 //add event listeners if triggers present
-if(document.querySelector('#submitButton'))document.querySelector('#submitButton').addEventListener('click', login);
+if(document.querySelector('#loginButton'))document.querySelector('#loginButton').addEventListener('click', login);
 if(document.querySelector('#logoutButton'))document.querySelector('#logoutButton').addEventListener('click', logout);

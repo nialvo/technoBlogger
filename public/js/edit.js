@@ -1,8 +1,8 @@
-async function edit(){
+async function edit(val){
     const title = document.querySelector('#title').value;
     const content = document.querySelector('#content').value;
     const tag = document.querySelector('#tag').value;
-    
+    //const val = document.querySelector('#postNum').value;
     console.log("yayayayayoooo");
     const response = await fetch(`/api/edit/post/${val}`, {
         method: 'PUT',
@@ -22,9 +22,9 @@ async function edit(){
     }
 }
 
-async function deletePost(){
-    
-    const response = await fetch(`/api/edit/post/delete/${val}`, {
+async function deletePost(val){
+    //const val = document.querySelector('#postNum').value;
+    const response = await fetch(`/api/delete/post/${val}`, {
         method: 'DELETE',
     });
     if (response.ok) {
@@ -34,11 +34,8 @@ async function deletePost(){
     }
 }
 
-window.addEventListener('load', function() {
-    const pid = document.getElementById('postNum');
-    const val = pid.innerText;
-    document.querySelector('#editPost').addEventListener('click', ()=>{edit(val)});
+/*
+document.querySelector('#editPost').addEventListener('click',edit);
     
-    document.querySelector('#deletePost').addEventListener('click', ()=>{deletePost(val)});
-    
-})
+document.querySelector('#deletePost').addEventListener('click',deletePost);
+*/

@@ -1,10 +1,25 @@
-<form id="newComment" value="{{id}}">
+<div class="post1">
+    <div class="postHead">
+        <div class="postTitle">{{post.title}}</div>
+        <p>Posted by {{post.author}} on {{post.date_created}}</p>
+        {{#if post.oneComment}}
+        <p>{{post.commentNum}} comment</p>
+        {{else}}
+        <p>{{post.commentNum}} comments</p>
+        {{/if}}
+    </div>
+    <div class="postBody">
+        <p class="postContent">{{post.content}}</p>
+    </div>
+</div>
+
+<form id="newComment" >
     
-    <label for="content">Last Name</label>
+    <label for="content">Type your comment here:</label>
     <input type="text" id="content" name="content" placeholder="Some constructive criticism or something from the peanut gallery..">
 
-
-    <button type="button" id="submitButton">Comment</button>
+    {{{send}}}
+    
 </form>
 
 <script src='/js/newComment.js'></script>
