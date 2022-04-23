@@ -7,7 +7,7 @@ Each user may edit or delete their posts and replies.<br>
 
 
 Please find the deployed program at the link below:<br>
-<a href="https://dashboard.heroku.com/apps/the-technology-weblog" target="_blank">link</a><br>
+<a href="https://the-technology-weblog.herokuapp.com/" target="_blank">link</a><br>
 
  For all inquiries, please email me via the link below:<br>
- <a href = "mailto: pilibili@protonmail.com">Send Email</a> 
+ <a href = "mailto: nialvo@protonmail.com">Send Email</a> 
