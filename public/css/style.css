@@ -20,10 +20,6 @@ ul{
 
 body{
     background-image: url('/images/mother2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
     margin:0px;
 }
 #bodyTitle{
@@ -80,7 +76,9 @@ a:hover{
 
 
 #allBody{}
-#bodyTitle{}
+#bodyTitle{
+    font-family: 'Westminster', sans-serif;
+}
 
 
 
