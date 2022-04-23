@@ -1,3 +1,5 @@
+
+@import url(https://db.onlinewebfonts.com/c/787588e6c611222861fa21b3ff9c12e4?family=Westminster);
 *{
     font-family: 'VT323', monospace;
     
@@ -38,6 +40,7 @@ a{
     color: rgb(37, 37, 108);
     text-decoration: none; 
     padding:3px;
+    margin:6px;
 
 }
 a:hover{
