@@ -1,6 +1,8 @@
 <div class="post1">
     <div class="postHead">
+      <div class="tag">{{post.tag}}</div>
         <div class="postTitle">{{post.title}}</div>
+        
         <p>Posted by {{post.author}} on {{post.date_created}}</p>
         {{#if post.oneComment}}
         <p>{{post.commentNum}} comment</p>
@@ -10,6 +12,8 @@
     </div>
     <div class="postBody">
         <p class="postContent">{{post.content}}</p>
+
+        {{{post.edit}}}
     </div>
 </div>
 
@@ -28,7 +32,7 @@
 </div>
 {{/each}}
 
-{{{post.edit}}}
+
 
 </form>
 <script src='/js/post.js'></script>

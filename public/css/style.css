@@ -1,16 +1,77 @@
-#navBar{
-    width: 100%;
-    background: linear-gradient(#e66465, #9198e5);
+*{
+    font-family: 'VT323', monospace;
+    
+    font-size:20px;
 }
-#navLinks{}
-.navLinkItem{}
-.navLink{
-    color: rgb(37, 37, 108)
+
+ul{
+    list-style: none;
 }
-.navLink:hover{
-    color: rgb(53, 156, 156)
+
+.tag{
+
+    padding:3px;
+    color: rgb(214, 214, 219);
+    background: linear-gradient(#696e68, #52546a);
+    border-radius: 4px;
 
 }
+
+body{
+    background: url('/images/mother2.jpg');
+    margin:0px;
+}
+#bodyTitle{
+    font-size:30px;
+    position:fixed;
+    font-family: 'Westminster', sans-serif;
+    top:30px;
+    left:40%;
+}
+#allBody{
+    margin-top:120px;
+   
+}
+a{
+
+    font-family: 'Westminster', sans-serif;
+    color: rgb(37, 37, 108);
+    text-decoration: none; 
+    padding:3px;
+
+}
+a:hover{
+
+    color: rgb(53, 156, 156);
+    border: 2px solid rgb(82, 226, 120);
+    cursor: pointer;
+
+}
+
+#navBar{
+    position:fixed;
+    top:0px;
+    width: 100%;
+    padding:1px;
+    background: linear-gradient(#bad0b5, #a1a8ec);
+}
+#navLinks{width: 20%;}
+.navLinkItem{
+     width: 100%;
+    }
+
+.navLink{
+    width: 100%;
+   
+}
+
+.myButtons{
+    margin-left: 25px;
+    margin-top: 10px;
+    margin-bottom:20px;
+}
+
+
 
 
 
@@ -33,32 +94,48 @@
 }
 
 .post {
-    border: 4px solid rgb(65, 21, 21);
+    border: 4px solid rgb(255, 255, 255);
     border-radius: 5px;
     margin:15px;
     padding:10px;
-    width:100%;
-    height:100%;
+    width:80%;
+    height:80%;
+    background:linear-gradient(#f69999, #f5abff);
 
 }
 .post1{
-    border: 4px solid rgb(65, 21, 21);
+    border: 4px solid rgb(255, 255, 255);
     border-radius: 5px;
     margin:15px;
     padding:10px;
-    width:100%;
-    height:100%;
+    width:80%;
+    height:80%;
+    background:linear-gradient(#f69999, #f5abff);
 
 
 }
-.post:hover{
-    border: 4px solid rgb(186, 127, 127);
-    border-radius: 5px;
-    padding:10px;
-    width:100%;
-    height:100%;
+
+.postHead{
+    display: flex;
+    flex-wrap:wrap;
+    text-align:center;
 
 }
+
+.postHead > *{
+    margin:10px;
+}
+.postTitle{
+    font-family: 'Westminster', sans-serif;
+
+}
+
+.postBody{}
+
+.postContent{}
+
+.postFoot{}
+
 
 .comment{
 
@@ -66,8 +143,9 @@
     border-radius: 6px;
     margin:20px;
     padding:10px;
-    width:80%;
+    width:60%;
     height:100%;
+    background:linear-gradient(#e7abab, #797c9b);
 }
 .commentHead{}
 .commentTitle{}
@@ -78,3 +156,16 @@
 
 #submitButton{}
 #addButton{}
+
+#newComment{
+    margin:20px;
+    width:60%;
+
+}
+
+#newPost{
+    margin:20px;
+    width:60%;
+
+}
+

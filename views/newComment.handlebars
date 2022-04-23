@@ -1,5 +1,6 @@
 <div class="post1">
     <div class="postHead">
+        <div class="tag">{{post.tag}}</div>
         <div class="postTitle">{{post.title}}</div>
         <p>Posted by {{post.author}} on {{post.date_created}}</p>
         {{#if post.oneComment}}
@@ -16,7 +17,7 @@
 <form id="newComment" >
     
     <label for="content">Type your comment here:</label>
-    <input type="text" id="content" name="content" placeholder="Some constructive criticism or something from the peanut gallery..">
+    <textarea id="content" name="content" placeholder="Some constructive criticism or something from the peanut gallery.."></textarea>
 
     {{{send}}}
     

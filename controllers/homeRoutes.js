@@ -82,8 +82,8 @@ router.get('/edit/post/:id', async (req, res) => {
             pageTitle: "Edit Post",
             loggedIn: req.session.logged_in,
             post,
-            editButton: `<button id="editPost" type="button" onclick="edit(${req.params.id})" class="submitButton">Edit</button>`,
-            deleteButton: `<button id="deletePost" type="button" onclick="deletePost(${req.params.id})" class="submitButton">Delete</button>`
+            editButton: `<button id="editPost" type="button" class="myButtons" onclick="edit(${req.params.id})" class="submitButton">Edit</button>`,
+            deleteButton: `<button id="deletePost" type="button" class="myButtons" onclick="deletePost(${req.params.id})" class="submitButton">Delete</button>`
         });
     }
     catch (err) {
@@ -114,7 +114,7 @@ router.get('/new/comment/:id', async (req, res) => {
             post,
             pageTitle: "New Comment",
             loggedIn: req.session.logged_in,
-            send: `<button type="button" id="submitButton" onclick="newComment(${req.params.id})" >Comment</button>`//need quotes for function?
+            send: `<button type="button" id="submitButton" class="myButtons" onclick="newComment(${req.params.id})" >Comment</button>`//need quotes for function?
         });
     }
     catch (err) {
@@ -148,8 +148,8 @@ router.get('/edit/comment/:id/:postid', async (req, res) => {
             pageTitle: "Edit Comment",
             content:comment.content,
             loggedIn: req.session.logged_in,
-            editButton: `<button id="editPost" type="button" onclick="editComment(${req.params.id},${req.params.postid})" class="submitButton">Edit</button>`,
-            deleteButton: `<button id="deletePost" type="button" onclick="deleteComment(${req.params.id},${req.params.postid})" class="submitButton">Delete</button>`
+            editButton: `<button id="editPost" type="button" class="myButtons" onclick="editComment(${req.params.id},${req.params.postid})" class="submitButton">Edit</button>`,
+            deleteButton: `<button id="deletePost" type="button" class="myButtons" onclick="deleteComment(${req.params.id},${req.params.postid})" class="submitButton">Delete</button>`
         });
     }
     catch (err) {

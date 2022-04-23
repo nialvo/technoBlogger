@@ -4,7 +4,7 @@ async function newPost (event){
     document.location.replace('/new/post');
 }
 
-if(document.querySelector('#newPost')){
-    document.querySelector('#newPost').addEventListener('click', newPost);
+if(document.querySelector('#addPost')){
+    document.querySelector('#addPost').addEventListener('click', newPost);
 }
 

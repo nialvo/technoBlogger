@@ -3,7 +3,9 @@
     {{#each posts as |post|}}
     <div class="post" id="{{id}}" value="post">
         <div class="postHead">
+            <div class="tag">{{tag}}</div>
             <div class="postTitle">{{title}}</div>
+            
             <p>Posted by {{name}} on {{date_created}}</p>
             {{#if oneComment}}
             <p>{{commentNum}} comment</p>
@@ -13,6 +15,7 @@
         </div>
         <div class="postBody">
             <p class="postContent">{{content}}</p>
+            <div class="postFoot">
             {{#if mine}}
             <a href="/edit/post/{{id}}">Edit or Delete Post</a>
             {{/if}}
@@ -21,13 +24,17 @@
             {{else}}
             <a href="/post/{{id}}">View or Add Comments</a>
             {{/if}}
+            </div>
         </div>
+
+
+
     </div>
     {{/each}}
 </div>
 
 {{#if loggedIn}}
-<button id='newPost' class='addButton myButtons'>Add New Post</button>
+<button id='addPost' class='addButton myButtons'>Add New Post</button>
 {{/if}}
 
 <script src="/js/home.js"></script>
