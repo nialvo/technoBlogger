@@ -1,5 +1,4 @@
 
-@import url(https://db.onlinewebfonts.com/c/787588e6c611222861fa21b3ff9c12e4?family=Westminster);
 *{
     font-family: 'VT323', monospace;
     
@@ -26,7 +25,6 @@ body{
 #bodyTitle{
     font-size:30px;
     position:fixed;
-    font-family: 'Westminster', sans-serif;
     top:30px;
     left:40%;
 }
@@ -36,7 +34,6 @@ body{
 }
 a{
 
-    font-family: 'Westminster', sans-serif;
     color: rgb(37, 37, 108);
     text-decoration: none; 
     padding:3px;
@@ -129,7 +126,6 @@ a:hover{
     margin:10px;
 }
 .postTitle{
-    font-family: 'Westminster', sans-serif;
 
 }
 
