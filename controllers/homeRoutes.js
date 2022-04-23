@@ -188,6 +188,7 @@ router.get('/post/:id', async (req, res) => {
         post.comments=comments;
 
         res.render('post', {
+            pageTitle: "The Technology Weblog",
             loggedIn: req.session.logged_in,
             post,
             
@@ -213,7 +214,7 @@ router.get('/signup', async (req, res) => {
 //login
 router.get('/login', async (req, res) => {
     try {
-        res.render('login', { pageTitle: "The Tech Blog" });
+        res.render('login', { pageTitle: "The Technology Weblog" });
     }
     catch (err) {
         console.log(err);
