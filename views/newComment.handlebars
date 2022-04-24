@@ -3,14 +3,15 @@
         <div class="tag">{{post.tag}}</div>
         <div class="postTitle">{{post.title}}</div>
         <p>Posted by {{post.author}} on {{post.date_created}}</p>
+        
+    </div>
+    <div class="postBody">
+        <p class="postContent">{{post.content}}</p>
         {{#if post.oneComment}}
         <p>{{post.commentNum}} comment</p>
         {{else}}
         <p>{{post.commentNum}} comments</p>
         {{/if}}
-    </div>
-    <div class="postBody">
-        <p class="postContent">{{post.content}}</p>
     </div>
 </div>
 

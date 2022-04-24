@@ -1,9 +1,23 @@
+@font-face {
+    font-family: Westminster;
+    src: url('/WESTM.TFF');
+}
+
+
 
 *{
     font-family: 'VT323', monospace;
     
     font-size:35px;
 }
+
+#loginForm > * {
+    margin:5px;
+}
+#signupForm > * {
+    margin:5px;
+}
+
 
 ul{
     list-style: none;
@@ -29,7 +43,7 @@ body{
     left:30%;
 }
 #allBody{
-    margin-top:150px;
+    margin-top:190px;
    
 }
 a{
@@ -37,7 +51,7 @@ a{
     color: rgb(37, 37, 108);
     text-decoration: none; 
     padding:3px;
-    margin:6px;
+    margin:8px;
 
 }
 a:hover{
@@ -169,4 +183,5 @@ a:hover{
     width:60%;
 
 }
+
 

@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 
+const months = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"]
+
 
 //homepage
 router.get('/', async (req, res) => {
@@ -8,9 +10,8 @@ router.get('/', async (req, res) => {
         const data = await Post.findAll({ include: [{ model: User }] });
         let posts = data.map((post) => {
             post = post.get({ plain: true });
-            console.log(post);
             date = post.date_created.split('-');
-            post.date_created = `${date[1]}/${date[2]}/${date[0]}`;
+            post.date_created = `${date[2]} ${months[date[1]-1]} '${date[0].slice(-2)}`;
             post.name = post.user.name;
             if(post.user_id==req.session.user_id)post.mine=true;
             else post.mine=false;
@@ -18,6 +19,7 @@ router.get('/', async (req, res) => {
             else post.oneComment=false;
             if(post.commentNum==0)post.zeroComments=true;
             else post.zeroComments=false;
+            post.loggedIn= req.session.logged_in;
             return post;
         });
         res.render('home', {
@@ -39,9 +41,9 @@ router.get('/dash', async (req, res) => {
         if (dbPostData && dbPostData.posts && dbPostData.posts.length) {
             posts = dbPostData.posts.map((post) => {
                 post = post.get({ plain: true });
-                post.name = dbPostData.dataValues.name;
                 date = post.date_created.split('-');
-                post.date_created = `${date[1]}/${date[2]}/${date[0]}`;
+                post.date_created = `${date[2]} ${months[date[1]-1]} '${date[0].slice(-2)}`;
+                post.name = dbPostData.dataValues.name;
                 if(post.commentNum==1)post.oneComment=true;
                 else post.oneComment=false;
                 if(post.commentNum==0)post.zeroComments=true;
@@ -105,6 +107,8 @@ router.get('/new/comment/:id', async (req, res) => {
         }
 
         let post = postData.dataValues;
+        date = post.date_created.split('-');
+        post.date_created = `${date[2]} ${months[date[1]-1]} '${date[0].slice(-2)}`;
         post.author = postData.dataValues.user.name;
         post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`
         if(post.commentNum==1)post.oneComment=true;
@@ -136,6 +140,8 @@ router.get('/edit/comment/:id/:postid', async (req, res) => {
         }
 
         let post = postData.dataValues;
+        date = post.date_created.split('-');
+        post.date_created = `${date[2]} ${months[date[1]-1]} '${date[0].slice(-2)}`;
         post.author = postData.dataValues.user.name;
         post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`
         if(post.commentNum==1)post.oneComment=true;
@@ -171,6 +177,8 @@ router.get('/post/:id', async (req, res) => {
         }
 
         let post = postData.dataValues;
+        date = post.date_created.split('-');
+        post.date_created = `${date[2]} ${months[date[1]-1]} '${date[0].slice(-2)}`;
         post.author = postData.dataValues.user.name;
         post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`
         if(post.commentNum==1)post.oneComment=true;
@@ -183,6 +191,7 @@ router.get('/post/:id', async (req, res) => {
             if(comment.user_id==req.session.user_id)comment.mine=true;
             else comment.mine=false;
             comment.edit=`<a href="/edit/comment/${comment.id}/${post.id}">Edit or Delete Comment</a>`
+            comment.loggedIn= req.session.logged_in;
             return comment;
         });
         post.comments=comments;
@@ -214,7 +223,7 @@ router.get('/signup', async (req, res) => {
 //login
 router.get('/login', async (req, res) => {
     try {
-        res.render('login', { pageTitle: "The Technology Weblog" });
+        res.render('login', { pageTitle: "log in" });
     }
     catch (err) {
         console.log(err);

@@ -6,24 +6,31 @@
         <div class="postTitle">{{title}}</div>
         
         <p>Posted by {{name}} on {{date_created}}</p>
+        
+    </div>
+    <div class="postBody">
+        <p class="postContent">{{content}}</p>
+        <div class="postFoot"></div>
         {{#if oneComment}}
         <p>{{commentNum}} comment</p>
         {{else}}
         <p>{{commentNum}} comments</p>
         {{/if}}
-    </div>
-    <div class="postBody">
-        <p class="postContent">{{content}}</p>
-        <div class="postFoot"></div>
-        <a href="/edit/post/{{id}}">Edit or Delete Post</a>
-        {{#if zeroComments}}
-        <a href="/post/{{id}}">Add Comments</a>
-        {{else}}
-        <a href="/post/{{id}}">View or Add Comments</a>
-        {{/if}}
-        </div>
         
+        
+        <a href="/edit/post/{{id}}">Edit or Delete Post</a>
+        
+            
+
+        {{#if zeroComments}}    
+            <a href="/post/{{id}}">Add Comments</a>   
+        {{else}}
+            <a href="/post/{{id}}">View or Add Comments</a>
+        {{/if}}
+
     </div>
+        
+</div>
 </div>
 {{/each}}
 </div>
