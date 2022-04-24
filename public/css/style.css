@@ -34,7 +34,7 @@ ul{
 
 body{
     background-image: url('/images/mother2.jpg');
-    position:fixed;
+    background-position:fixed;
     margin:0px;
 }
 #bodyTitle{
