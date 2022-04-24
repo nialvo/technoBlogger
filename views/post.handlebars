@@ -16,8 +16,12 @@
 
         {{#if post.mine}}
           {{#if loggedIn}}
-            {{{post.edit}}}
+            <a href="/edit/post/{{post.id}}">Edit or Delete Post</a>
           {{/if}}
+        {{/if}}
+        {{#if loggedIn}}
+        <a href="/new/comment/{{post.id}}">Add comment</a>
+
         {{/if}}
 
           
@@ -35,8 +39,9 @@
     <p class="commentContent">{{comment.content}}</p>
   </div>
 
-  {{#if comment.mine}}
-    {{#if loggedIn}}
+  
+  {{#if loggedIn}}
+    {{#if comment.mine}}
       {{{comment.edit}}}
     {{/if}}
   {{/if}}
