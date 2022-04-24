@@ -180,10 +180,12 @@ router.get('/post/:id', async (req, res) => {
         date = post.date_created.split('-');
         post.date_created = `${date[2]} ${months[date[1]-1]} '${date[0].slice(-2)}`;
         post.author = postData.dataValues.user.name;
-        post.edit=`<a href="/new/comment/${post.id}">Add Comment</a>`//////////////////////////////////////////////
+        post.edit=`<a href="/edit/post/${post.id}">Edit or Delete Post</a>`
         post.comment=`<a href="/new/comment/${post.id}">Add Comment</a>`
         if(post.commentNum==1)post.oneComment=true;
         else post.oneComment=false;
+        if(post.user_id==req.session.user_id)post.mine=true;
+        else post.mine=false;
         
         let comments = post.comments;
         comments = comments.map((comment)=>{
