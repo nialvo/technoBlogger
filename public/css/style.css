@@ -1,9 +1,9 @@
-/*@font-face {
+@font-face {
     font-family: Westminster;
-    src: url('/WESTM.TFF');
+    src: url('/assets/WESTM.ttf');
 }
 
-*/
+
 
 *{
     font-family: 'VT323', monospace;
@@ -89,13 +89,13 @@ a:hover{
 
 
 
-/*
+
 #allBody{}
 #bodyTitle{
     font-family: 'Westminster', sans-serif;
 }
 
-*/
+
 
 #newPost{}
 #title{
